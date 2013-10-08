@@ -17,7 +17,7 @@
         <td><c:out value="${entry.idpollQuiz}"/></td>
         <td><c:out value="${entry.choiceName}"/></td>
 
-        <td><form:form method="get" action="/viewdetail/${entry.idpollQuiz}">
+        <td><form:form method="GET" action="/vote/${entry.idpollQuiz}">
             <input type="submit" value="Vote"/>
         </form:form></td>
     </tr>

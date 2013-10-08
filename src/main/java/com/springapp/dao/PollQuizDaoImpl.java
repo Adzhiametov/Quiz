@@ -20,7 +20,7 @@ public class PollQuizDaoImpl implements Dao {
 
     @Override
     public boolean create(PollQuiz pollQuiz) {
-        if (this.sessionFactory.getCurrentSession().save(pollQuiz) != null) {
+        if (this.sessionFactory.openSession().save(pollQuiz) != null) {
             return true;
         }
         return false;
@@ -28,14 +28,14 @@ public class PollQuizDaoImpl implements Dao {
 
     @Override
     public PollQuiz read(int id) {
-        return (PollQuiz) this.sessionFactory.getCurrentSession().get(PollQuiz.class, id);
+        return (PollQuiz) this.sessionFactory.openSession().get(PollQuiz.class, id);
     }
 
     @Override
     public boolean update(PollQuiz pollQuiz) {
         try {
-            this.sessionFactory.getCurrentSession().update(pollQuiz);
-            if (this.sessionFactory.getCurrentSession().merge(pollQuiz) != null) {
+            this.sessionFactory.openSession().update(pollQuiz);
+            if (this.sessionFactory.openSession().merge(pollQuiz) != null) {
                 return true;
             }
             return false;
@@ -47,7 +47,7 @@ public class PollQuizDaoImpl implements Dao {
     @Override
     public boolean delete(PollQuiz pollQuiz) {
         try {
-            this.sessionFactory.getCurrentSession().delete(pollQuiz);
+            this.sessionFactory.openSession().delete(pollQuiz);
             return true;
         } catch (DataAccessException ex) {
             return false;
