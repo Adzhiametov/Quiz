@@ -56,6 +56,6 @@ public class PollQuizDaoImpl implements Dao {
 
     @Override
     public List<PollQuiz> findAll() {
-        return this.sessionFactory.getCurrentSession().createCriteria(PollQuiz.class).list();
+        return sessionFactory.openSession().createCriteria(PollQuiz.class).list();
     }
 }
